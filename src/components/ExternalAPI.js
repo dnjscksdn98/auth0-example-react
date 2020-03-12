@@ -10,11 +10,12 @@ const ExternalAPI = () => {
     try {
       const token = await getTokenSilently();
 
-      const response = await fetch("http://localhost:3010/api/private-scoped", {
+      const response = await fetch("http://localhost:8000/api/items", {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
+      console.log(token);
 
       const responseData = await response.message;
 
@@ -29,7 +30,7 @@ const ExternalAPI = () => {
     <>
       <h1>External API</h1>
       <button onClick={callApi}>Ping API</button>
-      {showResult && <code>{JSON.stringify(apiMessage, null, 2)}</code>}
+      {showResult && <span>{apiMessage}</span>}
     </>
   );
 };
